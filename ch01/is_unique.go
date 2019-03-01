@@ -14,3 +14,17 @@ func IsUnique(s string) bool {
 
 	return true
 }
+
+// IsUniqueVanilla determine if a string has all unique chars
+func IsUniqueVanilla(s string) bool {
+	lens := len(s)
+	for i := 0; i < lens; i++ {
+		for j := i + 1; j < lens; j++ {
+			if s[i] == s[j] {
+				return false
+			}
+		}
+	}
+
+	return true
+}
