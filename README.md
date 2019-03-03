@@ -16,11 +16,11 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 |1.8| Zero Matrix                   |               |           |
 |1.9| String Rotation               |               |           |
 
-[1]:  ch01/is_unique.go
-[2]:  ch01/is_uniqie_test.go
-[3]:  ch01/check_permutation.go
-[4]:  ch01/check_permutation_test.go
-[5]:  ch01/urlify.go
-[6]:  ch01/urlify_test.go
-[7]:  ch01/palindrome_permutation.go
-[8]:  ch01/palindrome_permutation_test.go
+[1]:  ch01/01_is_unique.go
+[2]:  ch01/01_is_uniqie_test.go
+[3]:  ch01/02_check_permutation.go
+[4]:  ch01/02_check_permutation_test.go
+[5]:  ch01/03_urlify.go
+[6]:  ch01/03_urlify_test.go
+[7]:  ch01/04_palindrome_permutation.go
+[8]:  ch01/04_palindrome_permutation_test.go
