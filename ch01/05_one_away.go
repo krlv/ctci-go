@@ -18,6 +18,7 @@ func IsOneAway(s1 string, s2 string) bool {
 }
 
 // isOneInsertAway returns true if given strings are one insert away
+// s1 should be the sortest string always
 func isOneInsertAway(s1 string, s2 string) bool {
 	edits := 0
 
@@ -81,6 +82,50 @@ func IsOneAwayLoop(s1 string, s2 string) bool {
 
 		i++ // move s1 index to the next char
 		j++ // move s2 index to the next char
+	}
+
+	return true
+}
+
+// IsOneAwayClosure returns true if given strings are one (or zero) edits away
+func IsOneAwayClosure(s1 string, s2 string) bool {
+	s1len := len(s1)
+	s2len := len(s2)
+	diff := s1len - s2len
+
+	// next rune closure for insert edit cases
+	next := func(s string, i int, n int) rune {
+		return rune(s[i+n])
+	}
+
+	if diff > 0 {
+		return isOneEditAway(s2, s1, next)
+	}
+
+	if diff < 0 {
+		return isOneEditAway(s1, s2, next)
+	}
+
+	// next rune closure for replace edit case
+	next = func(s string, i int, n int) rune {
+		return rune(s[i])
+	}
+	return isOneEditAway(s1, s2, next)
+}
+
+// isOneEditAway returns true if given strings are one (or zero) edits away
+// s1 should be the sortest string always
+func isOneEditAway(s1 string, s2 string, next func(s string, i int, n int) rune) bool {
+	edits := 0
+
+	for i, c := range s1 {
+		if c != next(s2, i, edits) {
+			edits++
+		}
+
+		if edits > 1 {
+			return false
+		}
 	}
 
 	return true

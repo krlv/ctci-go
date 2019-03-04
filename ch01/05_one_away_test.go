@@ -75,3 +75,40 @@ func TestIsOneAwayLoop(t *testing.T) {
 		t.Errorf("Strings \"%s\" and \"%s\" are more than one edit away", s1, s2)
 	}
 }
+
+func TestIsOneAwayClosure(t *testing.T) {
+	s1, s2 := "pale", "ple"
+	if !IsOneAwayClosure(s1, s2) {
+		t.Errorf("Strings \"%s\" and \"%s\" considered to be one edit away", s1, s2)
+	}
+
+	s1, s2 = "ple", "pale"
+	if !IsOneAwayClosure(s1, s2) {
+		t.Errorf("Strings \"%s\" and \"%s\" considered to be one edit away", s1, s2)
+	}
+
+	s1, s2 = "pales", "pale"
+	if !IsOneAwayClosure(s1, s2) {
+		t.Errorf("Strings \"%s\" and \"%s\" considered to be one edit away", s1, s2)
+	}
+
+	s1, s2 = "pale", "pales"
+	if !IsOneAwayClosure(s1, s2) {
+		t.Errorf("Strings \"%s\" and \"%s\" considered to be one edit away", s1, s2)
+	}
+
+	s1, s2 = "pale", "bale"
+	if !IsOneAwayClosure(s1, s2) {
+		t.Errorf("Strings \"%s\" and \"%s\" considered to be one edit away", s1, s2)
+	}
+
+	s1, s2 = "pale", "bake"
+	if IsOneAwayClosure(s1, s2) {
+		t.Errorf("Strings \"%s\" and \"%s\" are more than one edit away", s1, s2)
+	}
+
+	s1, s2 = "bak", "pale"
+	if IsOneAwayClosure(s1, s2) {
+		t.Errorf("Strings \"%s\" and \"%s\" are more than one edit away", s1, s2)
+	}
+}
