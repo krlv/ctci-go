@@ -95,3 +95,51 @@ func CompressBuilder(s string) string {
 
 	return s
 }
+
+// CompressBuilderCap is the Compress implementation based on strings.Builder
+// To optimize strings.Builder capacity, we're going to calculate the length
+// pf compressed string ahead
+func CompressBuilderCap(s string) string {
+	slen := len(s)
+	cmplen := compressedLength(s)
+
+	// if len is less than compressed length, the original string will be returned
+	if slen <= cmplen {
+		return s
+	}
+
+	var compressed strings.Builder
+	compressed.Grow(cmplen)
+
+	count := 1
+	for i := 1; i < slen; i++ {
+		if s[i-1] != s[i] {
+			compressed.WriteByte(s[i-1])
+			compressed.WriteString(strconv.Itoa(count))
+
+			count = 1
+		} else {
+			count++
+		}
+	}
+	compressed.WriteByte(s[slen-1])
+	compressed.WriteString(strconv.Itoa(count))
+
+	return compressed.String()
+}
+
+// compressedLength returns compressed length of string s
+func compressedLength(s string) int {
+	slen := len(s)
+	cmlen := 0
+	count := 1
+	for i := 1; i < slen; i++ {
+		if s[i-1] != s[i] {
+			cmlen += 1 + len(strconv.Itoa(count))
+			count = 1
+		} else {
+			count++
+		}
+	}
+	return cmlen + 1 + len(strconv.Itoa(count))
+}

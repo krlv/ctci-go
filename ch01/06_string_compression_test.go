@@ -66,3 +66,24 @@ func TestCompressBuilder(t *testing.T) {
 		t.Errorf("Expected to compress string \"%s\" to \"%s\", got \"%s\"", example, example, actual)
 	}
 }
+
+func TestCompressBuilderCap(t *testing.T) {
+	example := "aabcccccaaa"
+	expected := "a2b1c5a3"
+	actual := CompressBuilderCap(example)
+	if actual != expected {
+		t.Errorf("Expected to compress string \"%s\" to \"%s\", got \"%s\"", example, expected, actual)
+	}
+
+	example = "abca"
+	actual = CompressBuilderCap(example)
+	if actual != example {
+		t.Errorf("Expected to compress string \"%s\" to \"%s\", got \"%s\"", example, example, actual)
+	}
+
+	example = "aa"
+	actual = CompressBuilderCap(example)
+	if actual != example {
+		t.Errorf("Expected to compress string \"%s\" to \"%s\", got \"%s\"", example, example, actual)
+	}
+}
