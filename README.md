@@ -11,7 +11,7 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 |1.3| [URLify][5]                   | [tests][6]    |     ✓     |
 |1.4| [Palindrome Permutation][7]   | [tests][8]    |     ✓     |
 |1.5| [One Away][9]                 | [tests][10]   |     ✓     |
-|1.6| String Compression            |               |           |
+|1.6| [String Compression][11]      | [tests][12]   |     ✓     |
 |1.7| Rotate Matrix                 |               |           |
 |1.8| Zero Matrix                   |               |           |
 |1.9| String Rotation               |               |           |
@@ -26,3 +26,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [8]:  ch01/04_palindrome_permutation_test.go
 [9]:  ch01/05_one_away.go
 [10]:  ch01/05_one_away_test.go
+[11]:  ch01/05_string_compression.go
+[12]:  ch01/05_string_compression_test.go
