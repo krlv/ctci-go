@@ -1,6 +1,9 @@
 package ch01
 
-import "strconv"
+import (
+	"strconv"
+	"strings"
+)
 
 // Compress returns "compressed" string - all duplicates chars relpaced with "xN",
 // where x is original char and N is a number of chars
@@ -32,9 +35,7 @@ func Compress(s string) string {
 	return s
 }
 
-// CompressBytes returns "compressed" string - all duplicates chars relpaced with "xN",
-// where x is original char and N is a number of chars
-// If compressed string isn't smaller, than original, original string will be returned
+// CompressBytes is the Compress implementation using byte slice
 func CompressBytes(s string) string {
 	slen := len(s)
 
@@ -59,6 +60,37 @@ func CompressBytes(s string) string {
 
 	if len(bytes) < slen {
 		return string(bytes)
+	}
+
+	return s
+}
+
+// CompressBuilder is the Compress implementation based on strings.Builder
+func CompressBuilder(s string) string {
+	slen := len(s)
+
+	// if len is less than 3, the original string will be smaller
+	if slen < 3 {
+		return s
+	}
+
+	var compressed strings.Builder
+	count := 1
+	for i := 1; i < slen; i++ {
+		if s[i-1] != s[i] {
+			compressed.WriteByte(s[i-1])
+			compressed.WriteString(strconv.Itoa(count))
+
+			count = 1
+		} else {
+			count++
+		}
+	}
+	compressed.WriteByte(s[slen-1])
+	compressed.WriteString(strconv.Itoa(count))
+
+	if compressed.Len() < slen {
+		return compressed.String()
 	}
 
 	return s
