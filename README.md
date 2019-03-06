@@ -13,7 +13,7 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 |1.5| [One Away][9]                 | [tests][10]   |     ✓     |
 |1.6| [String Compression][11]      | [tests][12]   |     ✓     |
 |1.7| [Rotate Matrix][13]           | [tests][14]   |     ✓     |
-|1.8| Zero Matrix                   |               |           |
+|1.8| [Zero Matrix][15]             | [tests][16]   |     ✓     |
 |1.9| String Rotation               |               |           |
 
 [1]:  ch01/01_is_unique.go
@@ -30,3 +30,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [12]:  ch01/06_string_compression_test.go
 [13]:  ch01/07_rotate_matrix.go
 [14]:  ch01/07_rotate_matrix_test.go
+[15]:  ch01/08_zero_matrix.go
+[16]:  ch01/08_zero_matrix_test.go
