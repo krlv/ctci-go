@@ -37,15 +37,17 @@ func TestZeroMatrix(t *testing.T) {
 	}
 
 	actual = [][]int{
-		{1, 2, 3, 4, 5, 6, 7},
+		{0, 2, 3, 4, 5, 6, 7},
 		{1, 2, 3, 0, 5, 0, 7},
 		{1, 2, 3, 4, 5, 6, 7},
-		{1, 2, 3, 4, 5, 6, 0},
+		{1, 2, 3, 4, 5, 6, 7},
+		{0, 2, 3, 4, 5, 6, 0},
 	}
 	expected = [][]int{
-		{1, 2, 3, 0, 5, 0, 0},
 		{0, 0, 0, 0, 0, 0, 0},
-		{1, 2, 3, 0, 5, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0},
+		{0, 2, 3, 0, 5, 0, 0},
+		{0, 2, 3, 0, 5, 0, 0},
 		{0, 0, 0, 0, 0, 0, 0},
 	}
 	ZeroMatrix(actual)
@@ -89,15 +91,17 @@ func TestZeroMatrixSpaceEfficient(t *testing.T) {
 	}
 
 	actual = [][]int{
-		{1, 2, 3, 4, 5, 6, 7},
+		{0, 2, 3, 4, 5, 6, 7},
 		{1, 2, 3, 0, 5, 0, 7},
 		{1, 2, 3, 4, 5, 6, 7},
-		{1, 2, 3, 4, 5, 6, 0},
+		{1, 2, 3, 4, 5, 6, 7},
+		{0, 2, 3, 4, 5, 6, 0},
 	}
 	expected = [][]int{
-		{1, 2, 3, 0, 5, 0, 0},
 		{0, 0, 0, 0, 0, 0, 0},
-		{1, 2, 3, 0, 5, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0},
+		{0, 2, 3, 0, 5, 0, 0},
+		{0, 2, 3, 0, 5, 0, 0},
 		{0, 0, 0, 0, 0, 0, 0},
 	}
 	ZeroMatrixSpaceEfficient(actual)
@@ -106,6 +110,8 @@ func TestZeroMatrixSpaceEfficient(t *testing.T) {
 	}
 }
 
+// isEqualMatrix returns true if two matrix are equals
+// isEqualMatrix expected matrix to be the same size MxN
 func isEqualMatrix(actual [][]int, expected [][]int) bool {
 	for i, row := range actual {
 		for j, col := range row {

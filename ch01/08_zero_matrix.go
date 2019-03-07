@@ -72,7 +72,7 @@ func ZeroMatrixSpaceEfficient(m [][]int) {
 		}
 	}
 
-	for j := 0; j < cols; j++ {
+	for j := 1; j < cols; j++ {
 		if m[0][j] != 0 {
 			continue
 		}
@@ -82,7 +82,7 @@ func ZeroMatrixSpaceEfficient(m [][]int) {
 		}
 	}
 
-	for i := 0; i < rows; i++ {
+	for i := 1; i < rows; i++ {
 		if m[i][0] != 0 {
 			continue
 		}
