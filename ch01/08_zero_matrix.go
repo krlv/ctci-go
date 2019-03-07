@@ -35,3 +35,72 @@ func ZeroMatrix(m [][]int) {
 		}
 	}
 }
+
+// ZeroMatrixSpaceEfficient space efficient zero matrix
+func ZeroMatrixSpaceEfficient(m [][]int) {
+	rows := len(m)
+	if rows < 1 {
+		return
+	}
+
+	cols := len(m[0])
+	if cols < 1 {
+		return
+	}
+
+	zrow, zcol := false, false
+	for j := 0; j < cols; j++ {
+		if m[0][j] == 0 {
+			zcol = true
+			break
+		}
+	}
+
+	for i := 0; i < rows; i++ {
+		if m[i][0] == 0 {
+			zrow = true
+			break
+		}
+	}
+
+	for i := 1; i < rows; i++ {
+		for j := 1; j < cols; j++ {
+			if m[i][j] == 0 {
+				m[0][j] = 0
+				m[i][0] = 0
+			}
+		}
+	}
+
+	for j := 0; j < cols; j++ {
+		if m[0][j] != 0 {
+			continue
+		}
+
+		for i := 0; i < rows; i++ {
+			m[i][j] = 0
+		}
+	}
+
+	for i := 0; i < rows; i++ {
+		if m[i][0] != 0 {
+			continue
+		}
+
+		for j := 0; j < cols; j++ {
+			m[i][j] = 0
+		}
+	}
+
+	if zcol {
+		for j := 0; j < cols; j++ {
+			m[0][j] = 0
+		}
+	}
+
+	if zrow {
+		for i := 0; i < rows; i++ {
+			m[i][0] = 0
+		}
+	}
+}
