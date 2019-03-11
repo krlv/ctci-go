@@ -9,6 +9,7 @@ func TestRemoveDups(t *testing.T) {
 	node.AppendToTail(2)
 	node.AppendToTail(2)
 	node.AppendToTail(3)
+	node.AppendToTail(1)
 
 	RemoveDups(node)
 	n := node
@@ -27,6 +28,7 @@ func TestRemoveDupsRunner(t *testing.T) {
 	node.AppendToTail(2)
 	node.AppendToTail(2)
 	node.AppendToTail(3)
+	node.AppendToTail(1)
 
 	RemoveDupsRunner(node)
 	n := node
