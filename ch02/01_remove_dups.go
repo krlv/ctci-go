@@ -20,3 +20,21 @@ func RemoveDups(n *Node) {
 		n = n.next
 	}
 }
+
+// RemoveDupsRunner removes duplicates from linked list
+// Uses runner technique, no need in additional data structures
+func RemoveDupsRunner(n *Node) {
+	for n != nil {
+		r := n.next
+		for r != nil {
+			if n.data == r.data {
+				// remove duplicate
+				n.next = r.next
+			}
+
+			r = r.next
+		}
+
+		n = n.next
+	}
+}
