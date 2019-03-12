@@ -16,6 +16,19 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 |1.8| [Zero Matrix][15]             | [tests][16]   |     ✓     |
 |1.9| [String Rotation][17]         | [tests][18]   |     ✓     |
 
+## Chapter 2: Linked List
+
+| # | Problem                       | Tested        | Solved    |
+|---|-------------------------------|:-------------:|:---------:|
+|2.1| [Remove Sups][19]             | [tests][20]   |     ✓     |
+|2.2| Return `k`th to Last          | tests         |           |
+|2.3| Delete Middle Node            | tests         |           |
+|2.4| Partition                     | tests         |           |
+|2.5| Sum Lists                     | tests         |           |
+|2.6| Palindrome                    | tests         |           |
+|2.7| Intersection                  | tests         |           |
+|2.8| Loop Detection                | tests         |           |
+
 [1]:  ch01/01_is_unique.go
 [2]:  ch01/01_is_uniqie_test.go
 [3]:  ch01/02_check_permutation.go
@@ -34,3 +47,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [16]:  ch01/08_zero_matrix_test.go
 [17]:  ch01/09_string_rotation.go
 [18]:  ch01/09_string_rotation_test.go
+[19]:  ch02/01_remove_dups.go
+[20]:  ch02/01_remove_dups_test.go
