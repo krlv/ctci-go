@@ -31,3 +31,20 @@ func KthToLastRecursive(node *Node, k int) (*Node, int) {
 
 	return n, i
 }
+
+// KthToLastIterative returns kth to the last element
+func KthToLastIterative(node *Node, k int) *Node {
+	iterator := node
+	runner := node
+
+	for i := 0; i < k; i++ {
+		iterator = iterator.next
+	}
+
+	for iterator.next != nil {
+		iterator = iterator.next
+		runner = runner.next
+	}
+
+	return runner
+}
