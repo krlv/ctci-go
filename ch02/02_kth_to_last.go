@@ -15,3 +15,19 @@ func KthToLast(node *Node, k int) *Node {
 
 	return n
 }
+
+// KthToLastRecursive returns kth to the last element
+func KthToLastRecursive(node *Node, k int) (*Node, int) {
+	if node.next == nil {
+		return node, 0
+	}
+
+	n, i := KthToLastRecursive(node.next, k)
+	i++
+
+	if i == k {
+		return node, i
+	}
+
+	return n, i
+}
