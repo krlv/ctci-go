@@ -21,7 +21,7 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 | # | Problem                       | Tested        | Solved    |
 |---|-------------------------------|:-------------:|:---------:|
 |2.1| [Remove Sups][19]             | [tests][20]   |     ✓     |
-|2.2| Return `k`th to Last          | tests         |           |
+|2.2| [Return `k`th to Last][21]    | [tests][22]   |     ✓     |
 |2.3| Delete Middle Node            | tests         |           |
 |2.4| Partition                     | tests         |           |
 |2.5| Sum Lists                     | tests         |           |
@@ -49,3 +49,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [18]:  ch01/09_string_rotation_test.go
 [19]:  ch02/01_remove_dups.go
 [20]:  ch02/01_remove_dups_test.go
+[21]:  ch02/02_kth_to_last.go
+[22]:  ch02/02_kth_to_last_test.go
