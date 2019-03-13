@@ -5,7 +5,7 @@ func SumLists(n1 *Node, n2 *Node) *Node {
 	head := New(0) // sum list
 	tail := head
 
-	for n1 != nil || n2 != nil {
+	for {
 		value := tail.data
 
 		if n1 != nil {
@@ -23,6 +23,12 @@ func SumLists(n1 *Node, n2 *Node) *Node {
 			tail.next = New(1)
 		} else {
 			tail.data = value
+			tail.next = New(0)
+		}
+
+		if n1 == nil && n2 == nil {
+			tail.next = nil
+			break
 		}
 
 		tail = tail.next
