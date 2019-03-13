@@ -2,12 +2,11 @@ package ch02
 
 // SumLists returns sum of n1 and n2 numbers as a linked list
 func SumLists(n1 *Node, n2 *Node) *Node {
-	head := New(0) // sum list
+	head := New(0) // sum list; the first head node will remain empty
 	tail := head
 
-	for {
-		value := tail.data
-
+	value := 0
+	for n1 != nil && n2 != nil {
 		if n1 != nil {
 			value += n1.data
 			n1 = n1.next
@@ -18,23 +17,16 @@ func SumLists(n1 *Node, n2 *Node) *Node {
 			n2 = n2.next
 		}
 
-		if value > 9 {
-			tail.data = value % 10
-			tail.next = New(1)
-		} else {
-			tail.data = value
-			tail.next = New(0)
-		}
-
-		if n1 == nil && n2 == nil {
-			tail.next = nil
-			break
-		}
-
+		// add a new node to the list
+		tail.next = New(value % 10)
 		tail = tail.next
+
+		// carry the (1 || 0) * 10 value for the next iteration
+		value = value / 10
 	}
 
-	return head
+	// the head node is empty, skip it
+	return head.next
 }
 
 // SumListsReverse returns sum of n1 and n2 numbers as a linked list
