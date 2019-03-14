@@ -38,3 +38,32 @@ func (node *Node) DeleteNode(d int) {
 		}
 	}
 }
+
+// Len returns length of the linked list
+// Me: For now, let's assume that the time & space complexity
+// of the method is O(1)
+// Narrator: It's not
+func (node *Node) Len() int {
+	i := 0
+	for n := node; n != nil; n = n.next {
+		i++
+	}
+	return i
+}
+
+// PadLeft pads the list with n nodes of value d
+func (node *Node) PadLeft(d int, n int) {
+	head := New(d)
+	tail := head
+
+	for i := 1; i < n; i++ {
+		tail.next = New(d)
+		tail = tail.next
+	}
+
+	// hack to copy node content to the tail
+	temp := *node
+	tail.next = &temp
+
+	*node = *head
+}

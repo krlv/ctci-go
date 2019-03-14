@@ -47,3 +47,45 @@ func TestDeleteNode(t *testing.T) {
 		t.Errorf("Expected to have empty linked list, got %v\n", n)
 	}
 }
+
+func TestLen(t *testing.T) {
+	node := New(1)
+	node.AppendToTail(2)
+	node.AppendToTail(3)
+
+	actual := node.Len()
+	expected := 3
+	if actual != expected {
+		t.Errorf("List length expected to be %d, got %d", expected, actual)
+	}
+
+	node = New(1)
+	actual = node.Len()
+	expected = 1
+	if actual != expected {
+		t.Errorf("List length expected to be %d, got %d", expected, actual)
+	}
+
+	node = nil
+	actual = node.Len()
+	expected = 0
+	if actual != expected {
+		t.Errorf("List length expected to be %d, got %d", expected, actual)
+	}
+}
+
+func TestPadLeft(t *testing.T) {
+	node := New(1)
+	node.AppendToTail(2)
+	node.AppendToTail(3)
+
+	node.PadLeft(0, 3)
+	expected := []int{0, 0, 0, 1, 2, 3}
+
+	for i := 0; node != nil; i++ {
+		if node.data != expected[i] {
+			t.Errorf("%dth node expected to have data %v, got %v", i+1, expected[i], node.data)
+		}
+		node = node.next
+	}
+}
