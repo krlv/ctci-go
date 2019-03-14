@@ -39,48 +39,46 @@ func SumLists(n1 *Node, n2 *Node) *Node {
 
 // SumListsReverse returns sum of n1 and n2 numbers as a linked list
 // Numbers n1, n2 and resulted sum are stored in forward order
+// Solves the problem with recursion approach
 func SumListsReverse(n1 *Node, n2 *Node) *Node {
-	var head, tail, prev *Node
+	n1Len := n1.Len()
+	n2Len := n2.Len()
 
-	head = New(0) // sum list
-	tail = head
-
-	for {
-		value := tail.data
-
-		if n1 != nil {
-			value += n1.data
-			n1 = n1.next
-		}
-
-		if n2 != nil {
-			value += n2.data
-			n2 = n2.next
-		}
-
-		if value > 9 {
-			if prev == nil {
-				tail.next = New(0)
-				prev = tail
-				tail = tail.next
-			}
-
-			prev.data++
-			tail.data = value % 10
-		} else {
-			tail.data = value
-		}
-
-		tail.next = New(0)
-
-		if n1 == nil && n2 == nil {
-			tail.next = nil
-			break
-		}
-
-		prev = tail
-		tail = tail.next
+	if n1Len > n2Len {
+		n2.PadLeft(0, n1Len-n2Len)
 	}
+
+	if n1Len < n2Len {
+		n1.PadLeft(0, n2Len-n1Len)
+	}
+
+	head := sumListsReverseRecursion(n1, n2)
+
+	// remove leading zero
+	if head.data == 0 {
+		head = head.next
+	}
+
+	return head
+}
+
+// sumListsReverseRecursion returns sum of n1 and n2 numbers as a linked list
+// Numbers n1, n2 and resulted sum are stored in forward order
+// Numbers n1, n2 should be the same length
+func sumListsReverseRecursion(n1 *Node, n2 *Node) *Node {
+	value := n1.data + n2.data
+
+	if n1.next == nil && n2.next == nil {
+		head := New(value / 10)
+		head.next = New(value % 10)
+		return head
+	}
+
+	tail := sumListsReverseRecursion(n1.next, n2.next)
+	tail.data += value % 10
+
+	head := New(value / 10)
+	head.next = tail
 
 	return head
 }
