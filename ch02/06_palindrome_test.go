@@ -38,7 +38,7 @@ func TestIsPalindromeList(t *testing.T) {
 	node.AppendToTail(3)
 	node.AppendToTail(4)
 
-	if IsPalindromeList(node) {
+	if IsPalindromeIterative(node) {
 		t.Error("Expected the linked list to be not a palindrome")
 	}
 
@@ -57,7 +57,7 @@ func TestIsPalindromeList(t *testing.T) {
 	node.AppendToTail(2)
 	node.AppendToTail(1)
 
-	if !IsPalindromeList(node) {
+	if !IsPalindromeIterative(node) {
 		t.Error("Expected the linked list to be a palindrome")
 	}
 }
