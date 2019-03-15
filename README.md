@@ -24,7 +24,7 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 |2.2| [Return `k`th to Last][21]    | [tests][22]   |     ✓     |
 |2.3| [Delete Middle Node][23]      | [tests][24]   |     ✓     |
 |2.4| [Partition][25]               | [tests][26]   |     ✓     |
-|2.5| Sum Lists                     | tests         |           |
+|2.5| [Sum Lists][27]               | [tests][28]   |     ✓     |
 |2.6| Palindrome                    | tests         |           |
 |2.7| Intersection                  | tests         |           |
 |2.8| Loop Detection                | tests         |           |
@@ -55,3 +55,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [24]:  ch02/03_delete_middle_test.go
 [25]:  ch02/04_partition.go
 [26]:  ch02/04_partition_test.go
+[25]:  ch02/05_sum_lists.go
+[26]:  ch02/05_sum_lists_test.go
