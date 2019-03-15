@@ -14,11 +14,50 @@ func TestIsPalindrome(t *testing.T) {
 
 	node = New(1)
 	node.AppendToTail(2)
+	node.AppendToTail(2)
+	node.AppendToTail(1)
+
+	if !IsPalindrome(node) {
+		t.Error("Expected the linked list to be a polindrome")
+	}
+
+	node = New(1)
+	node.AppendToTail(2)
 	node.AppendToTail(3)
 	node.AppendToTail(2)
 	node.AppendToTail(1)
 
 	if !IsPalindrome(node) {
+		t.Error("Expected the linked list to be a polindrome")
+	}
+}
+
+func TestIsPalindromeList(t *testing.T) {
+	node := New(1)
+	node.AppendToTail(2)
+	node.AppendToTail(3)
+	node.AppendToTail(4)
+
+	if IsPalindromeList(node) {
+		t.Error("Expected the linked list to be not a polindrome")
+	}
+
+	node = New(1)
+	node.AppendToTail(2)
+	node.AppendToTail(2)
+	node.AppendToTail(1)
+
+	if !IsPalindrome(node) {
+		t.Error("Expected the linked list to be a polindrome")
+	}
+
+	node = New(1)
+	node.AppendToTail(2)
+	node.AppendToTail(3)
+	node.AppendToTail(2)
+	node.AppendToTail(1)
+
+	if !IsPalindromeList(node) {
 		t.Error("Expected the linked list to be a polindrome")
 	}
 }
