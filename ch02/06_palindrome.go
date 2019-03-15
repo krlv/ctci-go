@@ -1,5 +1,7 @@
 package ch02
 
+import "errors"
+
 // IsPalindrome checks if the linked list is a palindrome
 func IsPalindrome(node *Node) bool {
 	// head of the reverse list
@@ -48,4 +50,42 @@ func IsPalindromeList(node *Node) bool {
 	}
 
 	return true
+}
+
+// IsPalindromeRecursive checks if the linked list is a palindrome
+// Recursive-based implementation
+func IsPalindromeRecursive(node *Node) bool {
+	nlen := node.Len()
+
+	_, err := getPalindromePairNode(node, nlen)
+	if err != nil {
+		return false
+	}
+
+	return true
+}
+
+// getPalindromePairNode returns the (n-x) pair for x node
+// or error if the list is not a palindrome
+func getPalindromePairNode(node *Node, nlen int) (*Node, error) {
+	// this is the center of even-length palindrome
+	if nlen == 0 {
+		return node, nil
+	}
+
+	// this is the center of even-length palindrome
+	if nlen == 1 {
+		return node.next, nil
+	}
+
+	pair, err := getPalindromePairNode(node.next, nlen-2)
+	if err != nil {
+		return nil, err
+	}
+
+	if pair.data != node.data {
+		return nil, errors.New("Not a palindrome")
+	}
+
+	return pair.next, nil
 }
