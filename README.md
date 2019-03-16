@@ -27,7 +27,7 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 |2.5| [Sum Lists][27]               | [tests][28]   |     ✓     |
 |2.6| [Palindrome][29]              | [tests][30]   |     ✓     |
 |2.7| [Intersection][31]            | [tests][32]   |     ✓     |
-|2.8| Loop Detection                | tests         |           |
+|2.8| [Loop Detection][33]          | [tests][34]   |     ✓     |
 
 [1]:  ch01/01_is_unique.go
 [2]:  ch01/01_is_uniqie_test.go
@@ -61,3 +61,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [30]:  ch02/06_palindrome_test.go
 [31]:  ch02/07_intersection.go
 [32]:  ch02/07_intersection_test.go
+[33]:  ch02/08_loop_detection.go
+[34]:  ch02/08_loop_detection_test.go
