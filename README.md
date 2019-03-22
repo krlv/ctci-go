@@ -29,6 +29,19 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 |2.7| [Intersection][31]            | [tests][32]   |     ✓     |
 |2.8| [Loop Detection][33]          | [tests][34]   |     ✓     |
 
+## Chapter 3: Stacks and Queues
+
+[Stack implementation][35] (with Linked List as a storage); [tests][36]
+
+| # | Problem                       | Tested        | Solved    |
+|---|-------------------------------|:-------------:|:---------:|
+|3.1| Three in one                  | tests         |           |
+|3.2| Stack Min                     | tests         |           |
+|3.3| Stack of Plates               | tests         |           |
+|3.4| Queue via Stacks              | tests         |           |
+|3.5| Sort Stack                    | tests         |           |
+|3.6| Animal Shelter                | tests         |           |
+
 [1]:  ch01/01_is_unique.go
 [2]:  ch01/01_is_uniqie_test.go
 [3]:  ch01/02_check_permutation.go
@@ -63,3 +76,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [32]:  ch02/07_intersection_test.go
 [33]:  ch02/08_loop_detection.go
 [34]:  ch02/08_loop_detection_test.go
+[35]:  ch03/stack.go
+[36]:  ch03/stack_test.go
