@@ -4,10 +4,10 @@ import "testing"
 
 func TestNew(t *testing.T) {
 	data := 1
-	node := New(data)
+	item := New(data)
 
-	if node.data != data {
-		t.Errorf("Node data expected to be %d, got %d", data, node.data)
+	if item.data != data {
+		t.Errorf("Item data expected to be %d, got %d", data, item.data)
 	}
 }
 
@@ -23,7 +23,7 @@ func TestStackPop(t *testing.T) {
 	top = top.next
 	top.next = New(1)
 
-	expected := []int{3, 2, 1}
+	values := []int{3, 2, 1}
 	i := 0
 	for stack.top != nil {
 		n, err := stack.Pop()
@@ -31,8 +31,8 @@ func TestStackPop(t *testing.T) {
 			t.Errorf("Stack expected to have at least one node")
 		}
 
-		if n != expected[i] {
-			t.Errorf("Stack %d node expected to be %d, got %d", (i + 1), expected[i], n)
+		if n != values[i] {
+			t.Errorf("Stack %d item expected to be %d, got %d", (i + 1), values[i], n)
 		}
 
 		i++
@@ -49,7 +49,7 @@ func TestStackPush(t *testing.T) {
 	i := 0
 	for stack.top != nil {
 		if stack.top.data != expected[i] {
-			t.Errorf("Stack %d node expected to be %d, got %d", (i + 1), expected[i], stack.top.data)
+			t.Errorf("Stack %d item expected to be %d, got %d", (i + 1), expected[i], stack.top.data)
 		}
 
 		stack.top = stack.top.next
@@ -69,7 +69,7 @@ func TestStackPeek(t *testing.T) {
 	top = top.next
 	top.next = New(1)
 
-	expected := []int{3, 2, 1}
+	values := []int{3, 2, 1}
 	i := 0
 	for stack.top != nil {
 		n, err := stack.Peek()
@@ -77,8 +77,8 @@ func TestStackPeek(t *testing.T) {
 			t.Errorf("Stack expected to have at least one node")
 		}
 
-		if n != expected[i] {
-			t.Errorf("Stack %d node expected to be %d, got %d", (i + 1), expected[i], n)
+		if n != values[i] {
+			t.Errorf("Stack %d item expected to be %d, got %d", (i + 1), values[i], n)
 		}
 
 		stack.top = stack.top.next

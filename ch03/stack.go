@@ -2,23 +2,24 @@ package ch03
 
 import "errors"
 
-// Node structure implementation based on Linked List
-type Node struct {
+// Item structure implements an item of the Stack/Queue
+// Current implementation is based on Linked List
+type Item struct {
 	data int
-	next *Node
+	next *Item
 }
 
 // New returns new stack node value data as a top value
-func New(data int) *Node {
-	node := new(Node)
-	node.data = data
+func New(data int) *Item {
+	item := new(Item)
+	item.data = data
 
-	return node
+	return item
 }
 
 // Stack structure implementation based on Linked List
 type Stack struct {
-	top *Node
+	top *Item
 }
 
 // Pop returns (and removes) the top item from the satck

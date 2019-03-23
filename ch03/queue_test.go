@@ -25,6 +25,9 @@ func TestQueueEnqueue(t *testing.T) {
 
 func TestQueueDequeue(t *testing.T) {
 	queue := new(Queue)
+	if _, e := queue.Dequeue(); e == nil {
+		t.Error("Dequeue on empty queue should produce an error")
+	}
 
 	last := New(1)
 	queue.last = last
@@ -42,7 +45,10 @@ func TestQueueDequeue(t *testing.T) {
 	i := 0
 
 	for queue.first != nil {
-		data := queue.Dequeue()
+		data, err := queue.Dequeue()
+		if err != nil {
+			t.Errorf("Queue expected to have at least one item")
+		}
 
 		if data != values[i] {
 			t.Errorf("Queue %d item expected to be %d, got %d", (i + 1), values[i], data)
@@ -54,6 +60,9 @@ func TestQueueDequeue(t *testing.T) {
 
 func TestQueuePeek(t *testing.T) {
 	queue := new(Queue)
+	if _, e := queue.Peek(); e == nil {
+		t.Error("Peek on empty queue should produce an error")
+	}
 
 	last := New(1)
 	queue.last = last
@@ -71,7 +80,10 @@ func TestQueuePeek(t *testing.T) {
 	i := 0
 
 	for queue.first != nil {
-		data := queue.Peek()
+		data, err := queue.Peek()
+		if err != nil {
+			t.Errorf("Queue expected to have at least one item")
+		}
 
 		if data != values[i] {
 			t.Errorf("Queue %d item expected to be %d, got %d", (i + 1), values[i], data)
@@ -84,6 +96,10 @@ func TestQueuePeek(t *testing.T) {
 
 func TestQueueIsEmpty(t *testing.T) {
 	queue := new(Queue)
+	if !queue.IsEmpty() {
+		t.Error("Empty queue should return true")
+	}
+
 	queue.first = New(1)
 
 	if queue.IsEmpty() {

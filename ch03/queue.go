@@ -1,9 +1,11 @@
 package ch03
 
+import "errors"
+
 // Queue data structure implementation based on Linked List
 type Queue struct {
-	first *Node
-	last  *Node
+	first *Item
+	last  *Item
 }
 
 // Enqueue adds an item to the beggining of the queue
@@ -23,16 +25,24 @@ func (q *Queue) Enqueue(data int) {
 }
 
 // Dequeue returns (and removes) an item from the queue
-func (q *Queue) Dequeue() int {
+func (q *Queue) Dequeue() (int, error) {
+	if q.IsEmpty() {
+		return 0, errors.New("Empty Queue error")
+	}
+
 	data := q.first.data
 	q.first = q.first.next
 
-	return data
+	return data, nil
 }
 
 // Peek returns the top item from the queue (without removing it)
-func (q *Queue) Peek() int {
-	return q.first.data
+func (q *Queue) Peek() (int, error) {
+	if q.IsEmpty() {
+		return 0, errors.New("Empty Queue error")
+	}
+
+	return q.first.data, nil
 }
 
 // IsEmpty returns true when the queue is empty, false otherwise
