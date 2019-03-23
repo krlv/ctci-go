@@ -32,6 +32,7 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 ## Chapter 3: Stacks and Queues
 
 [Stack implementation][35] (with Linked List as a storage); [tests][36]
+[Queue implementation][37] (with Linked List as a storage); [tests][38]
 
 | # | Problem                       | Tested        | Solved    |
 |---|-------------------------------|:-------------:|:---------:|
@@ -78,3 +79,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [34]:  ch02/08_loop_detection_test.go
 [35]:  ch03/stack.go
 [36]:  ch03/stack_test.go
+[37]:  ch03/queue.go
+[38]:  ch03/queue_test.go
