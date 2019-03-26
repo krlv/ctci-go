@@ -22,7 +22,7 @@ type Stack struct {
 	top *Item
 }
 
-// Pop returns (and removes) the top item from the satck
+// Pop returns (and removes) the top item from the stack
 func (stack *Stack) Pop() (int, error) {
 	if stack.top == nil {
 		return 0, errors.New("Empty Stack error")
