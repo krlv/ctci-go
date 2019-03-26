@@ -29,12 +29,19 @@ func TestNewNthStack(t *testing.T) {
 
 func TestNthPop(t *testing.T) {
 	n, m := 3, 2
-	nth := NewNthStack(n)
+	nth := new(NthStack)
 
+	nth.n = n
 	nth.storage = make([]int, n*(m+1))
 	nth.start = make([]int, n)
 	nth.len = make([]int, n)
 	nth.cap = make([]int, n)
+
+	values := [][]int{
+		{10, 1},
+		{20, 2},
+		{30, 3},
+	}
 
 	for i := 0; i < n; i++ {
 		start := i * (m + 1)
@@ -45,16 +52,10 @@ func TestNthPop(t *testing.T) {
 		nth.cap[i] = 1
 
 		for j := start; j < stop; j++ {
-			nth.storage[j] = j
+			nth.storage[j] = values[i][j-start]
 			nth.len[i]++
 			nth.cap[i]++
 		}
-	}
-
-	values := [][]int{
-		{0, 1},
-		{3, 4},
-		{6, 7},
 	}
 
 	for i := 0; i < nth.n; i++ {
@@ -74,7 +75,51 @@ func TestNthPop(t *testing.T) {
 }
 
 func TestNthPush(t *testing.T) {
-	// TBD
+	n, m := 3, 2
+	nth := new(NthStack)
+
+	nth.n = n
+	nth.storage = make([]int, n*(m+1))
+	nth.start = make([]int, n)
+	nth.len = make([]int, n)
+	nth.cap = make([]int, n)
+
+	values := [][]int{
+		{10, 1},
+		{20, 2},
+		{30, 3},
+	}
+
+	for i := 0; i < n; i++ {
+		for j := m - 1; j >= 0; j-- {
+			nth.Push(i, values[i][j])
+		}
+	}
+
+	for i := 0; i < n; i++ {
+		start := i * (m + 1)
+		stop := start + m
+
+		for j := start; j < stop; j++ {
+			val := values[i][j-start]
+
+			if nth.storage[j] != val {
+				t.Errorf("%dth element of internal storage expected to be %d, got %d\n", (j + 1), val, nth.storage[j])
+			}
+		}
+
+		if nth.start[i] != start {
+			t.Errorf("%dth stack, start position expected to be %d, got %d\n", (i + 1), start, nth.start[i])
+		}
+
+		if nth.len[i] != m {
+			t.Errorf("%dth stack, length expected to be %d, got %d\n", (i + 1), start, nth.len[i])
+		}
+
+		if nth.cap[i] != (m + 1) {
+			t.Errorf("%dth stack, capacity expected to be %d, got %d\n", (i + 1), start, nth.cap[i])
+		}
+	}
 }
 
 func TestNthPeek(t *testing.T) {
