@@ -40,7 +40,15 @@ func NewNthStack(n int) *NthStack {
 
 // Pop returns (and removes) the top item from the `n`th stack
 func (nth *NthStack) Pop(n int) (int, error) {
-	return 0, nil
+	if nth.IsEmpty(n) {
+		return 0, errors.New("Empty Stack Error")
+	}
+
+	idx := nth.start[n] + nth.len[n] - 1
+	val := nth.storage[idx]
+	nth.len[n]--
+
+	return val, nil
 }
 
 // Push add an item to the `n`th stack
