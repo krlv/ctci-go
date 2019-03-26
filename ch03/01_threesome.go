@@ -53,5 +53,5 @@ func (nth *NthStack) Peek(n int) (int, error) {
 
 // IsEmpty returns true when the `n`th stack is empty, false otherwise
 func (nth *NthStack) IsEmpty(n int) bool {
-	return false
+	return nth.len[n] == 0
 }
