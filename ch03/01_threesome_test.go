@@ -132,6 +132,18 @@ func TestNthPeek(t *testing.T) {
 	nth.len = make([]int, n)
 	nth.cap = make([]int, n)
 
+	for i := 0; i < n; i++ {
+		nth.start[i] = i * (m + 1)
+		nth.len[i] = 0
+		nth.cap[i] = 1
+	}
+
+	for i := 0; i < n; i++ {
+		if _, err := nth.Peek(i); err == nil {
+			t.Errorf("%dth stack, Peek() on empty stack should return error\n", (i + 1))
+		}
+	}
+
 	values := [][]int{
 		{10, 1},
 		{20, 2},
@@ -142,10 +154,6 @@ func TestNthPeek(t *testing.T) {
 		start := i * (m + 1)
 		stop := start + m
 
-		nth.start[i] = start
-		nth.len[i] = 0
-		nth.cap[i] = 1
-
 		for j := start; j < stop; j++ {
 			nth.storage[j] = values[i][j-start]
 			nth.len[i]++
@@ -154,7 +162,7 @@ func TestNthPeek(t *testing.T) {
 	}
 
 	for i := 0; i < nth.n; i++ {
-		for j := 0; nth.len[i] > 0; j++ {
+		for j := m - 1; nth.len[i] > 0; j-- {
 			val := values[i][j]
 
 			num, err := nth.Peek(i)

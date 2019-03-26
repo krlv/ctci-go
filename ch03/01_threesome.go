@@ -1,5 +1,7 @@
 package ch03
 
+import "errors"
+
 // NthStack structure implements a N stacks
 // on top of the flat slice
 type NthStack struct {
@@ -48,7 +50,12 @@ func (nth *NthStack) Push(d int, n int) {
 
 // Peek returns the top item from the `n`th stack (without removing it)
 func (nth *NthStack) Peek(n int) (int, error) {
-	return 0, nil
+	if nth.IsEmpty(n) {
+		return 0, errors.New("Empty Stack Error")
+	}
+
+	idx := nth.start[n] + nth.len[n] - 1
+	return nth.storage[idx], nil
 }
 
 // IsEmpty returns true when the `n`th stack is empty, false otherwise
