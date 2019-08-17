@@ -25,7 +25,7 @@ type Stack struct {
 // Pop returns (and removes) the top item from the stack
 func (stack *Stack) Pop() (int, error) {
 	if stack.top == nil {
-		return 0, errors.New("Empty Stack error")
+		return 0, errors.New("empty Stack error")
 	}
 
 	top := stack.top
@@ -45,7 +45,7 @@ func (stack *Stack) Push(data int) {
 // Peek returns the top item from the satck (without removing it)
 func (stack *Stack) Peek() (int, error) {
 	if stack.top == nil {
-		return 0, errors.New("Empty Stack error")
+		return 0, errors.New("empty Stack error")
 	}
 
 	return stack.top.data, nil

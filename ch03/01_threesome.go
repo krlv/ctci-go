@@ -59,7 +59,7 @@ func (nth *NthStack) Push(d int, n int) {
 // Peek returns the top item from the `n`th stack (without removing it)
 func (nth *NthStack) Peek(n int) (int, error) {
 	if nth.IsEmpty(n) {
-		return 0, errors.New("Empty Stack Error")
+		return 0, errors.New("empty Stack Error")
 	}
 
 	idx := nth.start[n] + nth.len[n] - 1
