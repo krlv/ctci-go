@@ -36,7 +36,7 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 
 | # | Problem                       | Tested        | Solved    |
 |---|-------------------------------|:-------------:|:---------:|
-|3.1| Three in one                  | tests         |           |
+|3.1| [Three in one][39]            | [tests][40]   |     ✓     |
 |3.2| Stack Min                     | tests         |           |
 |3.3| Stack of Plates               | tests         |           |
 |3.4| Queue via Stacks              | tests         |           |
@@ -81,3 +81,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [36]:  ch03/stack_test.go
 [37]:  ch03/queue.go
 [38]:  ch03/queue_test.go
+[39]:  ch03/01_three_in_one.go
+[49]:  ch03/01_three_in_one_test.go

@@ -27,7 +27,7 @@ func (q *Queue) Enqueue(data int) {
 // Dequeue returns (and removes) an item from the queue
 func (q *Queue) Dequeue() (int, error) {
 	if q.IsEmpty() {
-		return 0, errors.New("Empty Queue error")
+		return 0, errors.New("empty Queue error")
 	}
 
 	data := q.first.data
@@ -39,7 +39,7 @@ func (q *Queue) Dequeue() (int, error) {
 // Peek returns the top item from the queue (without removing it)
 func (q *Queue) Peek() (int, error) {
 	if q.IsEmpty() {
-		return 0, errors.New("Empty Queue error")
+		return 0, errors.New("empty Queue error")
 	}
 
 	return q.first.data, nil
