@@ -32,12 +32,14 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 ## Chapter 3: Stacks and Queues
 
 [Stack implementation][35] (with Linked List as a storage); [tests][36]
+
 [Queue implementation][37] (with Linked List as a storage); [tests][38]
+
 
 | # | Problem                       | Tested        | Solved    |
 |---|-------------------------------|:-------------:|:---------:|
 |3.1| [Three in one][39]            | [tests][40]   |     ✓     |
-|3.2| Stack Min                     | tests         |           |
+|3.2| [Stack Min][41]               | [tests][42]   |     ✓     |
 |3.3| Stack of Plates               | tests         |           |
 |3.4| Queue via Stacks              | tests         |           |
 |3.5| Sort Stack                    | tests         |           |
@@ -83,3 +85,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [38]:  ch03/queue_test.go
 [39]:  ch03/01_three_in_one.go
 [40]:  ch03/01_three_in_one_test.go
+[41]:  ch03/02_stack_min.go
+[42]:  ch03/02_stack_min_test.go
