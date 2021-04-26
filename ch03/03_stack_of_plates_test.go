@@ -145,14 +145,14 @@ func TestStackSet_topStack(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "returns error on empty set",
-			fields: fields{},
+			name:    "returns error on empty set",
+			fields:  fields{},
 			wantErr: true,
 		},
 		{
-			name: "returns the top stack from the set",
+			name:   "returns the top stack from the set",
 			fields: fields{stacks: append([]*FixedStack{}, stack)},
-			want: stack,
+			want:   stack,
 		},
 	}
 	for _, tt := range tests {
@@ -182,9 +182,9 @@ func TestStackSet_appendStack(t *testing.T) {
 		want   *FixedStack
 	}{
 		{
-			name: "appends new stack to the set",
+			name:   "appends new stack to the set",
 			fields: fields{},
-			want: NewFixedStack(3),
+			want:   NewFixedStack(3),
 		},
 	}
 	for _, tt := range tests {
@@ -209,14 +209,14 @@ func TestStackSet_removeStack(t *testing.T) {
 		want   []*FixedStack
 	}{
 		{
-			name: "do nothing if no stacks in the set",
+			name:   "do nothing if no stacks in the set",
 			fields: fields{stacks: []*FixedStack{}},
-			want: []*FixedStack{},
+			want:   []*FixedStack{},
 		},
 		{
-			name: "removes top stack from the set",
+			name:   "removes top stack from the set",
 			fields: fields{stacks: append([]*FixedStack{}, NewFixedStack(1), NewFixedStack(1))},
-			want: append([]*FixedStack{}, NewFixedStack(1)),
+			want:   append([]*FixedStack{}, NewFixedStack(1)),
 		},
 	}
 	for _, tt := range tests {
