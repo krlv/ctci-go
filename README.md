@@ -35,12 +35,13 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 
 [Queue implementation][37] (with Linked List as a storage); [tests][38]
 
+[Fixed (capped) Stack implementation][39] (with Linked List as a storage); [tests][40]
 
 | # | Problem                       | Tested        | Solved    |
 |---|-------------------------------|:-------------:|:---------:|
-|3.1| [Three in one][39]            | [tests][40]   |     ✓     |
-|3.2| [Stack Min][41]               | [tests][42]   |     ✓     |
-|3.3| [Stack of Plates][43]         | [tests][44]   |     ✓     |
+|3.1| [Three in one][41]            | [tests][42]   |     ✓     |
+|3.2| [Stack Min][43]               | [tests][44]   |     ✓     |
+|3.3| [Stack of Plates][45]         | [tests][46]   |     ✓     |
 |3.4| Queue via Stacks              | tests         |           |
 |3.5| Sort Stack                    | tests         |           |
 |3.6| Animal Shelter                | tests         |           |
@@ -83,9 +84,11 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [36]:  ch03/stack_test.go
 [37]:  ch03/queue.go
 [38]:  ch03/queue_test.go
-[39]:  ch03/01_three_in_one.go
-[40]:  ch03/01_three_in_one_test.go
-[41]:  ch03/02_stack_min.go
-[42]:  ch03/02_stack_min_test.go
-[43]:  ch03/03_stack_of_plates.go
-[44]:  ch03/03_stack_of_plates_test.go
+[39]:  ch03/fixed_stack.go
+[40]:  ch03/fixed_stack_test.go
+[41]:  ch03/01_three_in_one.go
+[42]:  ch03/01_three_in_one_test.go
+[43]:  ch03/02_stack_min.go
+[44]:  ch03/02_stack_min_test.go
+[45]:  ch03/03_stack_of_plates.go
+[46]:  ch03/03_stack_of_plates_test.go
