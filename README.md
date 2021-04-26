@@ -40,7 +40,7 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 |---|-------------------------------|:-------------:|:---------:|
 |3.1| [Three in one][39]            | [tests][40]   |     ✓     |
 |3.2| [Stack Min][41]               | [tests][42]   |     ✓     |
-|3.3| Stack of Plates               | tests         |           |
+|3.3| [Stack of Plates][43]         | [tests][44]   |     ✓     |
 |3.4| Queue via Stacks              | tests         |           |
 |3.5| Sort Stack                    | tests         |           |
 |3.6| Animal Shelter                | tests         |           |
@@ -87,3 +87,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [40]:  ch03/01_three_in_one_test.go
 [41]:  ch03/02_stack_min.go
 [42]:  ch03/02_stack_min_test.go
+[43]:  ch03/03_stack_of_plates.go
+[44]:  ch03/03_stack_of_plates_test.go
