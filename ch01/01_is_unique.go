@@ -1,5 +1,7 @@
 package ch01
 
+import "strings"
+
 // IsUnique determine if a string has all unique chars
 // This solution is based on HashTable (Go map) data structure
 func IsUnique(s string) bool {
@@ -28,5 +30,23 @@ func IsUniqueVanilla(s string) bool {
 		}
 	}
 
+	return true
+}
+
+// IsUniqueBits determines if a string has all unique chars (only works for ASCII)
+// This solution doesn't utilize any additional data structures and has O(n) time complexity
+func IsUniqueBits(s string) bool {
+
+	s = strings.ToLower(s)
+	var vector int32
+	sBytes := []byte(s) // only for ASCII
+	for _, sByte := range sBytes {
+		index := sByte - 'a'
+		mask := int32(1 << index)
+		if (vector & mask) == mask {
+			return false
+		}
+		vector = vector | mask
+	}
 	return true
 }

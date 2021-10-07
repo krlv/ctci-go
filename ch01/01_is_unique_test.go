@@ -21,3 +21,13 @@ func TestIsUniqueVanilla(t *testing.T) {
 		t.Error("'uniqke' is a unique string")
 	}
 }
+
+func TestIsUniqueBits(t *testing.T) {
+	if IsUniqueBits("unique") {
+		t.Error("'unique' is not a unique string")
+	}
+
+	if !IsUniqueBits("uniqke") {
+		t.Error("'uniqke' is a unique string")
+	}
+}
