@@ -15,3 +15,10 @@ func TestUrlify(t *testing.T) {
 		t.Errorf("Expected \"%s\" after ULRification, got \"%s\"", expected, actual)
 	}
 }
+
+func TestUrlifyRegex(t *testing.T) {
+	actual, expected := UrlifyRegex("slug url"), "slug%20url"
+	if actual != expected {
+		t.Errorf("Expected \"%s\" after ULRification, got \"%s\"", expected, actual)
+	}
+}

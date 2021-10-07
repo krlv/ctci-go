@@ -1,5 +1,7 @@
 package ch01
 
+import "regexp"
+
 // URLifyn returns the string with HTML encoded spacese
 // Expects real string length as a second parameter
 func URLifyn(s string, n int) string {
@@ -54,4 +56,11 @@ func URLify(s string) string {
 	}
 
 	return string(runes)
+}
+
+func UrlifyRegex(s string) string {
+
+	exp := regexp.MustCompile(" ")
+	return exp.ReplaceAllString(s, "%20")
+
 }
