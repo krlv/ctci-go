@@ -58,6 +58,7 @@ func URLify(s string) string {
 	return string(runes)
 }
 
+// UrlifyRegex returns the s string with HTML-encoded space characters.
 func UrlifyRegex(s string) string {
 
 	exp := regexp.MustCompile(" ")
