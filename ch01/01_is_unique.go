@@ -39,9 +39,8 @@ func IsUniqueBits(s string) bool {
 
 	s = strings.ToLower(s)
 	var vector int32
-	sBytes := []byte(s) // only for ASCII
-	for _, sByte := range sBytes {
-		index := sByte - 'a'
+	for _, rune := range s {
+		index := rune - 'a'
 		mask := int32(1 << index)
 		if (vector & mask) == mask {
 			return false
