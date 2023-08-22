@@ -37,14 +37,14 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 
 [Fixed (capped) Stack implementation][39] (with Linked List as a storage); [tests][40]
 
-| # | Problem                       | Tested        | Solved    |
-|---|-------------------------------|:-------------:|:---------:|
-|3.1| [Three in one][41]            | [tests][42]   |     ✓     |
-|3.2| [Stack Min][43]               | [tests][44]   |     ✓     |
-|3.3| [Stack of Plates][45]         | [tests][46]   |     ✓     |
-|3.4| Queue via Stacks              | tests         |           |
-|3.5| Sort Stack                    | tests         |           |
-|3.6| Animal Shelter                | tests         |           |
+| #   | Problem                |   Tested    | Solved |
+|-----|------------------------|:-----------:|:------:|
+| 3.1 | [Three in one][41]     | [tests][42] |   ✓    |
+| 3.2 | [Stack Min][43]        | [tests][44] |   ✓    |
+| 3.3 | [Stack of Plates][45]  | [tests][46] |   ✓    |
+| 3.4 | [Queue via Stacks][47] | [tests][48] |   ✓    |
+| 3.5 | Sort Stack             |    tests    |        |
+| 3.6 | Animal Shelter         |    tests    |        |
 
 [1]:  ch01/01_is_unique.go
 [2]:  ch01/01_is_uniqie_test.go
@@ -92,3 +92,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [44]:  ch03/02_stack_min_test.go
 [45]:  ch03/03_stack_of_plates.go
 [46]:  ch03/03_stack_of_plates_test.go
+[47]:  ch03/04_my_queue.go
+[48]:  ch03/04_my_queue_test.go
