@@ -12,17 +12,17 @@ func TestNewFixedStack(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want *FixedStack
+		want *FixedStack[int]
 	}{
 		{
 			name: "creates an empty stack with predefined capacity",
 			args: args{cap: 10},
-			want: &FixedStack{cap: 10},
+			want: &FixedStack[int]{cap: 10},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := NewFixedStack(tt.args.cap); !reflect.DeepEqual(got, tt.want) {
+			if got := NewFixedStack[int](tt.args.cap); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("NewFixedStack() = %v, want %v", got, tt.want)
 			}
 		})
@@ -31,13 +31,13 @@ func TestNewFixedStack(t *testing.T) {
 
 func TestFixedStack_Pop(t *testing.T) {
 	type fields struct {
-		top *Item
+		top *Item[int]
 		len int
 		cap int
 	}
 	type want struct {
 		top   int
-		stack *FixedStack
+		stack *FixedStack[int]
 	}
 	tests := []struct {
 		name    string
@@ -52,13 +52,13 @@ func TestFixedStack_Pop(t *testing.T) {
 		},
 		{
 			name:   "pops top value from the stack",
-			fields: fields{top: &Item{data: 10}, len: 1, cap: 1},
-			want:   want{top: 10, stack: &FixedStack{len: 0, cap: 1}},
+			fields: fields{top: &Item[int]{data: 10}, len: 1, cap: 1},
+			want:   want{top: 10, stack: &FixedStack[int]{len: 0, cap: 1}},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			stack := &FixedStack{
+			stack := &FixedStack[int]{
 				top: tt.fields.top,
 				len: tt.fields.len,
 				cap: tt.fields.cap,
@@ -83,7 +83,7 @@ func TestFixedStack_Pop(t *testing.T) {
 
 func TestFixedStack_Push(t *testing.T) {
 	type fields struct {
-		top *Item
+		top *Item[int]
 		len int
 		cap int
 	}
@@ -94,31 +94,31 @@ func TestFixedStack_Push(t *testing.T) {
 		name    string
 		fields  fields
 		args    args
-		want    *FixedStack
+		want    *FixedStack[int]
 		wantErr bool
 	}{
 		{
 			name:   "pushes new value to an empty stack",
 			fields: fields{top: nil, len: 0, cap: 2},
 			args:   args{data: 1},
-			want:   &FixedStack{top: &Item{data: 1}, len: 1, cap: 2},
+			want:   &FixedStack[int]{top: &Item[int]{data: 1}, len: 1, cap: 2},
 		},
 		{
 			name:   "pushes new value to a non empty stack",
-			fields: fields{top: &Item{data: 1}, len: 1, cap: 2},
+			fields: fields{top: &Item[int]{data: 1}, len: 1, cap: 2},
 			args:   args{data: 2},
-			want:   &FixedStack{top: &Item{data: 2, next: &Item{data: 1}}, len: 2, cap: 2},
+			want:   &FixedStack[int]{top: &Item[int]{data: 2, next: &Item[int]{data: 1}}, len: 2, cap: 2},
 		},
 		{
 			name:    "returns error when push a value to a full stack",
-			fields:  fields{top: &Item{data: 1}, len: 1, cap: 1},
+			fields:  fields{top: &Item[int]{data: 1}, len: 1, cap: 1},
 			args:    args{data: 2},
 			wantErr: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			stack := &FixedStack{
+			stack := &FixedStack[int]{
 				top: tt.fields.top,
 				len: tt.fields.len,
 				cap: tt.fields.cap,
@@ -139,7 +139,7 @@ func TestFixedStack_Push(t *testing.T) {
 
 func TestFixedStack_Peek(t *testing.T) {
 	type fields struct {
-		top *Item
+		top *Item[int]
 		len int
 		cap int
 	}
@@ -156,13 +156,13 @@ func TestFixedStack_Peek(t *testing.T) {
 		},
 		{
 			name:   "returns top value from the stack",
-			fields: fields{top: &Item{data: 10}, len: 1, cap: 2},
+			fields: fields{top: &Item[int]{data: 10}, len: 1, cap: 2},
 			want:   10,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			stack := &FixedStack{
+			stack := &FixedStack[int]{
 				top: tt.fields.top,
 				len: tt.fields.len,
 				cap: tt.fields.cap,
@@ -181,7 +181,7 @@ func TestFixedStack_Peek(t *testing.T) {
 
 func TestFixedStack_IsEmpty(t *testing.T) {
 	type fields struct {
-		top *Item
+		top *Item[int]
 		len int
 		cap int
 	}
@@ -197,13 +197,13 @@ func TestFixedStack_IsEmpty(t *testing.T) {
 		},
 		{
 			name:   "returns false if stack is not empty",
-			fields: fields{top: &Item{data: 1}, len: 1, cap: 1},
+			fields: fields{top: &Item[int]{data: 1}, len: 1, cap: 1},
 			want:   false,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			stack := &FixedStack{
+			stack := &FixedStack[int]{
 				top: tt.fields.top,
 				len: tt.fields.len,
 				cap: tt.fields.cap,
@@ -217,7 +217,7 @@ func TestFixedStack_IsEmpty(t *testing.T) {
 
 func TestFixedStack_IsFull(t *testing.T) {
 	type fields struct {
-		top *Item
+		top *Item[int]
 		len int
 		cap int
 	}
@@ -233,18 +233,18 @@ func TestFixedStack_IsFull(t *testing.T) {
 		},
 		{
 			name:   "returns false if stack is not full",
-			fields: fields{top: &Item{data: 1}, len: 1, cap: 2},
+			fields: fields{top: &Item[int]{data: 1}, len: 1, cap: 2},
 			want:   false,
 		},
 		{
 			name:   "returns true if stack is full",
-			fields: fields{top: &Item{data: 1}, len: 1, cap: 1},
+			fields: fields{top: &Item[int]{data: 1}, len: 1, cap: 1},
 			want:   true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			stack := &FixedStack{
+			stack := &FixedStack[int]{
 				top: tt.fields.top,
 				len: tt.fields.len,
 				cap: tt.fields.cap,

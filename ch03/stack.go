@@ -4,28 +4,28 @@ import "errors"
 
 // Item structure implements an item of the Stack/Queue
 // Current implementation is based on Linked List
-type Item struct {
-	data int
-	next *Item
+type Item[T any] struct {
+	data T
+	next *Item[T]
 }
 
 // New returns new stack node value data as a top value
-func New(data int) *Item {
-	item := new(Item)
+func New[T any](data T) *Item[T] {
+	item := new(Item[T])
 	item.data = data
 
 	return item
 }
 
 // Stack structure implementation based on Linked List
-type Stack struct {
-	top *Item
+type Stack[T any] struct {
+	top *Item[T]
 }
 
 // Pop returns (and removes) the top item from the stack
-func (stack *Stack) Pop() (int, error) {
+func (stack *Stack[T]) Pop() (T, error) {
 	if stack.top == nil {
-		return 0, errors.New("empty Stack error")
+		return *new(T), errors.New("empty Stack error")
 	}
 
 	top := stack.top
@@ -35,7 +35,7 @@ func (stack *Stack) Pop() (int, error) {
 }
 
 // Push add an item to the stack
-func (stack *Stack) Push(data int) {
+func (stack *Stack[T]) Push(data T) {
 	top := New(data)
 	top.next = stack.top
 
@@ -43,15 +43,15 @@ func (stack *Stack) Push(data int) {
 }
 
 // Peek returns the top item from the satck (without removing it)
-func (stack *Stack) Peek() (int, error) {
+func (stack *Stack[T]) Peek() (T, error) {
 	if stack.top == nil {
-		return 0, errors.New("empty Stack error")
+		return *new(T), errors.New("empty Stack error")
 	}
 
 	return stack.top.data, nil
 }
 
 // IsEmpty returns true when stack is empty, false otherwise
-func (stack *Stack) IsEmpty() bool {
+func (stack *Stack[T]) IsEmpty() bool {
 	return stack.top == nil
 }

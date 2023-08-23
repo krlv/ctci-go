@@ -12,7 +12,7 @@ func TestNew(t *testing.T) {
 }
 
 func TestStackPop(t *testing.T) {
-	stack := new(Stack)
+	stack := new(Stack[int])
 	if _, e := stack.Pop(); e == nil {
 		t.Error("Empty stack should Pop an error")
 	}
@@ -40,7 +40,7 @@ func TestStackPop(t *testing.T) {
 }
 
 func TestStackPush(t *testing.T) {
-	stack := new(Stack)
+	stack := new(Stack[int])
 	stack.Push(1)
 	stack.Push(2)
 	stack.Push(3)
@@ -58,7 +58,7 @@ func TestStackPush(t *testing.T) {
 }
 
 func TestStackPeek(t *testing.T) {
-	stack := new(Stack)
+	stack := new(Stack[int])
 	if _, e := stack.Peek(); e == nil {
 		t.Error("Empty stack should Peek an error")
 	}
@@ -87,7 +87,7 @@ func TestStackPeek(t *testing.T) {
 }
 
 func TestStackIsEmpty(t *testing.T) {
-	stack := new(Stack)
+	stack := new(Stack[int])
 	if !stack.IsEmpty() {
 		t.Error("Empty stack should return false")
 	}

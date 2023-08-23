@@ -4,7 +4,7 @@ import "testing"
 
 func TestSort(t *testing.T) {
 	type args struct {
-		stack  *Stack
+		stack  *Stack[int]
 		values []int
 	}
 	tests := []struct {
@@ -14,12 +14,12 @@ func TestSort(t *testing.T) {
 	}{
 		{
 			name: "sorts random stack",
-			args: args{stack: new(Stack), values: []int{1, 2, 3, 4, 10}},
+			args: args{stack: new(Stack[int]), values: []int{1, 2, 3, 4, 10}},
 			want: []int{1, 2, 3, 4, 10},
 		},
 		{
 			name: "sorts a stack that already sorted",
-			args: args{stack: new(Stack), values: []int{5, 4, 3, 2, 1}},
+			args: args{stack: new(Stack[int]), values: []int{5, 4, 3, 2, 1}},
 			want: []int{1, 2, 3, 4, 5},
 		},
 	}

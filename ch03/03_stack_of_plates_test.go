@@ -6,15 +6,15 @@ import (
 )
 
 func TestStackSet_Pop(t *testing.T) {
-	stack1 := NewFixedStack(2)
+	stack1 := NewFixedStack[int](2)
 	stack1.Push(1)
 	stack1.Push(2)
 
-	stack2 := NewFixedStack(2)
+	stack2 := NewFixedStack[int](2)
 	stack2.Push(3)
 
 	type fields struct {
-		stacks []*FixedStack
+		stacks []*FixedStack[int]
 	}
 	type want struct {
 		pop int
@@ -28,22 +28,22 @@ func TestStackSet_Pop(t *testing.T) {
 	}{
 		{
 			name:    "returns error if the set is empty",
-			fields:  fields{stacks: []*FixedStack{}},
+			fields:  fields{stacks: []*FixedStack[int]{}},
 			wantErr: true,
 		},
 		{
 			name:    "returns error if the top stack is empty",
-			fields:  fields{stacks: append([]*FixedStack{}, NewFixedStack(2))},
+			fields:  fields{stacks: append([]*FixedStack[int]{}, NewFixedStack[int](2))},
 			wantErr: true,
 		},
 		{
 			name:   "returns the top value and removes empty stack from the set",
-			fields: fields{stacks: append([]*FixedStack{}, stack1, stack2)},
+			fields: fields{stacks: append([]*FixedStack[int]{}, stack1, stack2)},
 			want:   want{pop: 3, len: 1},
 		},
 		{
 			name:   "returns the top value from the top stack in the set",
-			fields: fields{stacks: append([]*FixedStack{}, stack1)},
+			fields: fields{stacks: append([]*FixedStack[int]{}, stack1)},
 			want:   want{pop: 2, len: 1},
 		},
 	}
@@ -72,15 +72,15 @@ func TestStackSet_Pop(t *testing.T) {
 }
 
 func TestStackSet_Push(t *testing.T) {
-	stack1 := NewFixedStack(2)
+	stack1 := NewFixedStack[int](2)
 	stack1.Push(1)
 
-	stack2 := NewFixedStack(2)
+	stack2 := NewFixedStack[int](2)
 	stack2.Push(1)
 	stack2.Push(2)
 
 	type fields struct {
-		stacks []*FixedStack
+		stacks []*FixedStack[int]
 	}
 	type args struct {
 		data int
@@ -97,19 +97,19 @@ func TestStackSet_Push(t *testing.T) {
 	}{
 		{
 			name:   "pushes a value to an empty SetStack",
-			fields: fields{stacks: []*FixedStack{}},
+			fields: fields{stacks: []*FixedStack[int]{}},
 			args:   args{data: 1},
 			want:   want{len: 1},
 		},
 		{
 			name:   "pushes a value to non-full top stack",
-			fields: fields{stacks: append([]*FixedStack{}, stack1)},
+			fields: fields{stacks: append([]*FixedStack[int]{}, stack1)},
 			args:   args{data: 1},
 			want:   want{len: 1},
 		},
 		{
 			name:   "appends new stack to the set on Push() when top stack is full",
-			fields: fields{stacks: append([]*FixedStack{}, stack2)},
+			fields: fields{stacks: append([]*FixedStack[int]{}, stack2)},
 			args:   args{data: 1},
 			want:   want{len: 2},
 		},
@@ -131,17 +131,17 @@ func TestStackSet_Push(t *testing.T) {
 }
 
 func TestStackSet_topStack(t *testing.T) {
-	stack := NewFixedStack(2)
+	stack := NewFixedStack[int](2)
 	stack.Push(1)
 	stack.Push(2)
 
 	type fields struct {
-		stacks []*FixedStack
+		stacks []*FixedStack[int]
 	}
 	tests := []struct {
 		name    string
 		fields  fields
-		want    *FixedStack
+		want    *FixedStack[int]
 		wantErr bool
 	}{
 		{
@@ -151,7 +151,7 @@ func TestStackSet_topStack(t *testing.T) {
 		},
 		{
 			name:   "returns the top stack from the set",
-			fields: fields{stacks: append([]*FixedStack{}, stack)},
+			fields: fields{stacks: append([]*FixedStack[int]{}, stack)},
 			want:   stack,
 		},
 	}
@@ -174,17 +174,17 @@ func TestStackSet_topStack(t *testing.T) {
 
 func TestStackSet_appendStack(t *testing.T) {
 	type fields struct {
-		stacks []*FixedStack
+		stacks []*FixedStack[int]
 	}
 	tests := []struct {
 		name   string
 		fields fields
-		want   *FixedStack
+		want   *FixedStack[int]
 	}{
 		{
 			name:   "appends new stack to the set",
 			fields: fields{},
-			want:   NewFixedStack(3),
+			want:   NewFixedStack[int](3),
 		},
 	}
 	for _, tt := range tests {
@@ -201,22 +201,22 @@ func TestStackSet_appendStack(t *testing.T) {
 
 func TestStackSet_removeStack(t *testing.T) {
 	type fields struct {
-		stacks []*FixedStack
+		stacks []*FixedStack[int]
 	}
 	tests := []struct {
 		name   string
 		fields fields
-		want   []*FixedStack
+		want   []*FixedStack[int]
 	}{
 		{
 			name:   "do nothing if no stacks in the set",
-			fields: fields{stacks: []*FixedStack{}},
-			want:   []*FixedStack{},
+			fields: fields{stacks: []*FixedStack[int]{}},
+			want:   []*FixedStack[int]{},
 		},
 		{
 			name:   "removes top stack from the set",
-			fields: fields{stacks: append([]*FixedStack{}, NewFixedStack(1), NewFixedStack(1))},
-			want:   append([]*FixedStack{}, NewFixedStack(1)),
+			fields: fields{stacks: append([]*FixedStack[int]{}, NewFixedStack[int](1), NewFixedStack[int](1))},
+			want:   append([]*FixedStack[int]{}, NewFixedStack[int](1)),
 		},
 	}
 	for _, tt := range tests {

@@ -3,17 +3,17 @@ package ch03
 // MyQueue data structure implementation based on two stacks
 type MyQueue struct {
 	// front of the queue (oldest elements)
-	front *Stack
+	front *Stack[int]
 
 	// back of the queue (newest elements)
-	back *Stack
+	back *Stack[int]
 }
 
 // NewMyQueue returns new MyQueue
 func NewMyQueue() *MyQueue {
 	return &MyQueue{
-		front: new(Stack),
-		back:  new(Stack),
+		front: new(Stack[int]),
+		back:  new(Stack[int]),
 	}
 }
 

@@ -6,7 +6,7 @@ import (
 
 // StackSet represents set of fixed (capped) stacks
 type StackSet struct {
-	stacks []*FixedStack
+	stacks []*FixedStack[int]
 }
 
 // Pop returns (and removes) the top item from the top stack
@@ -46,7 +46,7 @@ func (set *StackSet) Push(data int) error {
 }
 
 // TopStack returns the top stack from the set
-func (set *StackSet) topStack() (*FixedStack, error) {
+func (set *StackSet) topStack() (*FixedStack[int], error) {
 	n := len(set.stacks) - 1
 	if n < 0 {
 		return nil, errors.New("set is empty")
@@ -56,8 +56,8 @@ func (set *StackSet) topStack() (*FixedStack, error) {
 }
 
 // AppendStack adds a new stack to the set
-func (set *StackSet) appendStack() *FixedStack {
-	stack := NewFixedStack(3)
+func (set *StackSet) appendStack() *FixedStack[int] {
+	stack := NewFixedStack[int](3)
 	set.stacks = append(set.stacks, stack)
 
 	return stack

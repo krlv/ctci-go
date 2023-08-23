@@ -3,7 +3,7 @@ package ch03
 import "testing"
 
 func TestQueueEnqueue(t *testing.T) {
-	queue := new(Queue)
+	queue := new(Queue[int])
 	queue.Enqueue(1)
 	queue.Enqueue(2)
 	queue.Enqueue(3)
@@ -24,7 +24,7 @@ func TestQueueEnqueue(t *testing.T) {
 }
 
 func TestQueueDequeue(t *testing.T) {
-	queue := new(Queue)
+	queue := new(Queue[int])
 	if _, e := queue.Dequeue(); e == nil {
 		t.Error("Dequeue on empty queue should produce an error")
 	}
@@ -59,7 +59,7 @@ func TestQueueDequeue(t *testing.T) {
 }
 
 func TestQueuePeek(t *testing.T) {
-	queue := new(Queue)
+	queue := new(Queue[int])
 	if _, e := queue.Peek(); e == nil {
 		t.Error("Peek on empty queue should produce an error")
 	}
@@ -95,7 +95,7 @@ func TestQueuePeek(t *testing.T) {
 }
 
 func TestQueueIsEmpty(t *testing.T) {
-	queue := new(Queue)
+	queue := new(Queue[int])
 	if !queue.IsEmpty() {
 		t.Error("Empty queue should return true")
 	}

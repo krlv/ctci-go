@@ -3,13 +3,13 @@ package ch03
 import "errors"
 
 // Queue data structure implementation based on Linked List
-type Queue struct {
-	first *Item
-	last  *Item
+type Queue[T any] struct {
+	first *Item[T]
+	last  *Item[T]
 }
 
 // Enqueue adds an item to the beggining of the queue
-func (q *Queue) Enqueue(data int) {
+func (q *Queue[T]) Enqueue(data T) {
 	item := New(data)
 
 	if q.last != nil {
@@ -25,9 +25,9 @@ func (q *Queue) Enqueue(data int) {
 }
 
 // Dequeue returns (and removes) an item from the queue
-func (q *Queue) Dequeue() (int, error) {
+func (q *Queue[T]) Dequeue() (T, error) {
 	if q.IsEmpty() {
-		return 0, errors.New("empty Queue error")
+		return *new(T), errors.New("empty Queue error")
 	}
 
 	data := q.first.data
@@ -37,15 +37,15 @@ func (q *Queue) Dequeue() (int, error) {
 }
 
 // Peek returns the top item from the queue (without removing it)
-func (q *Queue) Peek() (int, error) {
+func (q *Queue[T]) Peek() (T, error) {
 	if q.IsEmpty() {
-		return 0, errors.New("empty Queue error")
+		return *new(T), errors.New("empty Queue error")
 	}
 
 	return q.first.data, nil
 }
 
 // IsEmpty returns true when the queue is empty, false otherwise
-func (q *Queue) IsEmpty() bool {
+func (q *Queue[T]) IsEmpty() bool {
 	return q.first == nil
 }
