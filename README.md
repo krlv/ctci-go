@@ -44,7 +44,7 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 | 3.3 | [Stack of Plates][45]  | [tests][46] |   ✓    |
 | 3.4 | [Queue via Stacks][47] | [tests][48] |   ✓    |
 | 3.5 | [Sort Stack][49]       | [tests][50] |   ✓    |
-| 3.6 | Animal Shelter         |    tests    |        |
+| 3.6 | [Animal Shelter][51]   | [tests][52] |   ✓    |
 
 [1]:  ch01/01_is_unique.go
 [2]:  ch01/01_is_uniqie_test.go
@@ -96,3 +96,5 @@ Solving programming questions from ["Cracking the Coding Interview 6th Edition"]
 [48]:  ch03/04_my_queue_test.go
 [49]:  ch03/05_sort_stack.go
 [50]:  ch03/05_sort_stack_test.go
+[51]:  ch03/06_animal_shelter.go
+[52]:  ch03/06_animal_shelter_test.go
