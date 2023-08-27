@@ -11,7 +11,7 @@ func TestGraph_Vertex(t *testing.T) {
 	emptyGraph := ch04.NewGraph[string]()
 
 	graphWithA := ch04.NewGraph[string]()
-	vertexA, _ := graphWithA.AddVertex("A")
+	vertexA, _ := graphWithA.AddNode("A")
 
 	type args[T comparable] struct {
 		data T
@@ -20,19 +20,19 @@ func TestGraph_Vertex(t *testing.T) {
 		name    string
 		g       *ch04.Graph[T]
 		args    args[T]
-		want    *ch04.Vertex[T]
+		want    *ch04.GraphNode[T]
 		wantErr bool
 	}
 	tests := []testCase[string]{
 		{
-			name:    "vertex exists",
+			name:    "node exists",
 			g:       graphWithA,
 			args:    args[string]{data: "A"},
 			want:    vertexA,
 			wantErr: false,
 		},
 		{
-			name:    "vertex does not exist",
+			name:    "node does not exist",
 			g:       emptyGraph,
 			args:    args[string]{data: "A"},
 			want:    nil,
@@ -41,13 +41,13 @@ func TestGraph_Vertex(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := tt.g.Vertex(tt.args.data)
+			got, err := tt.g.Node(tt.args.data)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("Vertex() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("Node() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("Vertex() got = %v, want %v", got, tt.want)
+				t.Errorf("Node() got = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -57,7 +57,7 @@ func TestGraph_AddVertex(t *testing.T) {
 	emptyGraph := ch04.NewGraph[string]()
 
 	graphWithA := ch04.NewGraph[string]()
-	graphWithA.AddVertex("A")
+	graphWithA.AddNode("A")
 
 	type args[T comparable] struct {
 		data T
@@ -71,14 +71,14 @@ func TestGraph_AddVertex(t *testing.T) {
 	}
 	tests := []testCase[string]{
 		{
-			name:    "add vertex to empty graph",
+			name:    "add node to empty graph",
 			g:       emptyGraph,
 			args:    args[string]{data: "A"},
 			want:    "A",
 			wantErr: false,
 		},
 		{
-			name:    "fail to add vertex that already exists",
+			name:    "fail to add node that already exists",
 			g:       graphWithA,
 			args:    args[string]{data: "A"},
 			wantErr: true,
@@ -86,9 +86,9 @@ func TestGraph_AddVertex(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := tt.g.AddVertex(tt.args.data)
+			got, err := tt.g.AddNode(tt.args.data)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("AddVertex() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("AddNode() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 
@@ -98,7 +98,7 @@ func TestGraph_AddVertex(t *testing.T) {
 			}
 
 			if !reflect.DeepEqual(vs, tt.want) {
-				t.Errorf("AddVertex() got = %v, want %v", got, tt.want)
+				t.Errorf("AddNode() got = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -108,15 +108,15 @@ func TestGraph_AddEdge(t *testing.T) {
 	emptyGraph := ch04.NewGraph[string]()
 
 	graphWithA := ch04.NewGraph[string]()
-	graphWithA.AddVertex("A")
+	graphWithA.AddNode("A")
 
 	graphWithAB := ch04.NewGraph[string]()
-	graphWithAB.AddVertex("A")
-	graphWithAB.AddVertex("B")
+	graphWithAB.AddNode("A")
+	graphWithAB.AddNode("B")
 
 	graphWithEdge := ch04.NewGraph[string]()
-	graphWithEdge.AddVertex("A")
-	graphWithEdge.AddVertex("B")
+	graphWithEdge.AddNode("A")
+	graphWithEdge.AddNode("B")
 	graphWithEdge.AddEdge("A", "B")
 
 	type args[T comparable] struct {
@@ -137,7 +137,7 @@ func TestGraph_AddEdge(t *testing.T) {
 			wantErr: true,
 		},
 		{
-			name:    "add edge to graph with one vertex",
+			name:    "add edge to graph with one node",
 			g:       graphWithA,
 			args:    args[string]{from: "A", to: "B"},
 			wantErr: true,
@@ -174,18 +174,18 @@ func TestGraph_String(t *testing.T) {
 	emptyGraph := ch04.NewGraph[string]()
 
 	graphWithA := ch04.NewGraph[string]()
-	graphWithA.AddVertex("A")
+	graphWithA.AddNode("A")
 
 	graphWithAB := ch04.NewGraph[string]()
-	graphWithAB.AddVertex("A")
-	graphWithAB.AddVertex("B")
+	graphWithAB.AddNode("A")
+	graphWithAB.AddNode("B")
 
 	graphWithEdge := ch04.NewGraph[string]()
-	graphWithEdge.AddVertex("A")
-	graphWithEdge.AddVertex("B")
+	graphWithEdge.AddNode("A")
+	graphWithEdge.AddNode("B")
 	graphWithEdge.AddEdge("A", "B")
-	graphWithEdge.AddVertex("C")
-	graphWithEdge.AddVertex("D")
+	graphWithEdge.AddNode("C")
+	graphWithEdge.AddNode("D")
 	graphWithEdge.AddEdge("C", "D")
 	graphWithEdge.AddEdge("D", "A")
 
@@ -201,17 +201,17 @@ func TestGraph_String(t *testing.T) {
 			want: "",
 		},
 		{
-			name: "graph with one vertex",
+			name: "graph with one node",
 			g:    graphWithA,
 			want: "A\n",
 		},
 		{
-			name: "graph with two vertices",
+			name: "graph with two nodes",
 			g:    graphWithAB,
 			want: "A\nB\n",
 		},
 		{
-			name: "graph with edges",
+			name: "graph with multiple nodes and edges",
 			g:    graphWithEdge,
 			want: "A -> B\nB\nC -> D\nD -> A\n",
 		},

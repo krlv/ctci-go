@@ -5,62 +5,62 @@ import (
 	"strings"
 )
 
-// Vertex is a node in a graph
-type Vertex[T comparable] struct {
+// GraphNode is a node (vertex) in a graph
+type GraphNode[T comparable] struct {
 	data     T
-	adjacent []*Vertex[T]
+	adjacent []*GraphNode[T]
 }
 
-// String returns the string representation of the vertex
-func (v *Vertex[T]) String() string {
+// String returns the string representation of the graph node
+func (v *GraphNode[T]) String() string {
 	return fmt.Sprintf("%v", v.data)
 }
 
-// Graph is a collection of vertices with edges between them
+// Graph is a collection of nodes (vertices) with edges between them
 type Graph[T comparable] struct {
-	vertices []*Vertex[T]
+	nodes []*GraphNode[T]
 }
 
 // NewGraph creates a new empty graph
 func NewGraph[T comparable]() *Graph[T] {
-	return &Graph[T]{vertices: make([]*Vertex[T], 0)}
+	return &Graph[T]{nodes: make([]*GraphNode[T], 0)}
 }
 
-// Vertex returns the vertex with the given data
-func (g *Graph[T]) Vertex(data T) (*Vertex[T], error) {
-	for _, v := range g.vertices {
+// Node returns the node (vertex) with the given data
+func (g *Graph[T]) Node(data T) (*GraphNode[T], error) {
+	for _, v := range g.nodes {
 		if v.data == data {
 			return v, nil
 		}
 	}
 
-	return nil, fmt.Errorf("vertex %v not found", data)
+	return nil, fmt.Errorf("node %v not found", data)
 }
 
-// AddVertex adds a new vertex to the graph
-func (g *Graph[T]) AddVertex(data T) (*Vertex[T], error) {
-	if _, err := g.Vertex(data); err == nil {
-		return nil, fmt.Errorf("vertex %v already exists", data)
+// AddNode adds a new node (vertex) to the graph
+func (g *Graph[T]) AddNode(data T) (*GraphNode[T], error) {
+	if _, err := g.Node(data); err == nil {
+		return nil, fmt.Errorf("node %v already exists", data)
 	}
 
-	v := &Vertex[T]{data: data}
-	g.vertices = append(g.vertices, v)
+	v := &GraphNode[T]{data: data}
+	g.nodes = append(g.nodes, v)
 
 	return v, nil
 }
 
-// AddEdge adds an edge between two vertices
+// AddEdge adds an edge between two nodes
 func (g *Graph[T]) AddEdge(from, to T) error {
 	if from == to {
 		return fmt.Errorf("cannot add edge from %v to itself", from)
 	}
 
-	fromVertex, err := g.Vertex(from)
+	fromVertex, err := g.Node(from)
 	if err != nil {
 		return err
 	}
 
-	toVertex, err := g.Vertex(to)
+	toVertex, err := g.Node(to)
 	if err != nil {
 		return err
 	}
@@ -80,7 +80,7 @@ func (g *Graph[T]) AddEdge(from, to T) error {
 func (g *Graph[T]) String() string {
 	var sb strings.Builder
 
-	for _, v := range g.vertices {
+	for _, v := range g.nodes {
 		sb.WriteString(v.String())
 		for _, a := range v.adjacent {
 			sb.WriteString(" -> ")
