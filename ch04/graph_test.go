@@ -7,7 +7,7 @@ import (
 	"github.com/krlv/ctci-go/ch04"
 )
 
-func TestGraph_Vertex(t *testing.T) {
+func TestGraph_Node(t *testing.T) {
 	emptyGraph := ch04.NewGraph[string]()
 
 	graphWithA := ch04.NewGraph[string]()
@@ -53,7 +53,7 @@ func TestGraph_Vertex(t *testing.T) {
 	}
 }
 
-func TestGraph_AddVertex(t *testing.T) {
+func TestGraph_AddNode(t *testing.T) {
 	emptyGraph := ch04.NewGraph[string]()
 
 	graphWithA := ch04.NewGraph[string]()
