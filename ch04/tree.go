@@ -32,3 +32,23 @@ func InOrderTraversal[T cmp.Ordered](n *BinaryTreeNode[T], visitFunc WalkFunc[T]
 
 	return nil
 }
+
+func PreOrderTraversal[T cmp.Ordered](n *BinaryTreeNode[T], visitFunc WalkFunc[T]) error {
+	if n == nil {
+		return nil
+	}
+
+	if err := visitFunc(n.Data); err != nil {
+		return err
+	}
+
+	if err := PreOrderTraversal(n.Left, visitFunc); err != nil {
+		return err
+	}
+
+	if err := PreOrderTraversal(n.Right, visitFunc); err != nil {
+		return err
+	}
+
+	return nil
+}
