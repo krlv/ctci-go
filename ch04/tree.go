@@ -13,6 +13,7 @@ type BinaryTreeNode[T cmp.Ordered] struct {
 type WalkFunc[T cmp.Ordered] func(T) error
 
 // InOrderTraversal traverses a binary tree in order
+// When performed on a binary search tree, the nodes are visited in ascending order, i.e. "in-order".
 func InOrderTraversal[T cmp.Ordered](n *BinaryTreeNode[T], visitFunc WalkFunc[T]) error {
 	if n == nil {
 		return nil
@@ -34,6 +35,7 @@ func InOrderTraversal[T cmp.Ordered](n *BinaryTreeNode[T], visitFunc WalkFunc[T]
 }
 
 // PreOrderTraversal traverses a binary tree in pre-order
+// In a pre-order traversal, the root is the first node visited.
 func PreOrderTraversal[T cmp.Ordered](n *BinaryTreeNode[T], visitFunc WalkFunc[T]) error {
 	if n == nil {
 		return nil
@@ -55,6 +57,7 @@ func PreOrderTraversal[T cmp.Ordered](n *BinaryTreeNode[T], visitFunc WalkFunc[T
 }
 
 // PostOrderTraversal traverses a binary tree in post-order
+// In a post-order traversal, the root is the last node visited.
 func PostOrderTraversal[T cmp.Ordered](n *BinaryTreeNode[T], visitFunc WalkFunc[T]) error {
 	if n == nil {
 		return nil
