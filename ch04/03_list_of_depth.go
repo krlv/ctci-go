@@ -9,6 +9,8 @@ package ch04
 // Time complexity: O(n) — each node is visited exactly once.
 // Space complexity: O(n) — the returned slice and contained lists store every node.
 // Auxiliary space: O(h) — recursion stack proportional to tree height h.
+// * For a balanced binary tree, h = Θ(log n), so auxiliary = O(log n).
+// * For a skewed (degenerate) tree, h = Θ(n), so auxiliary = O(n).
 func DepthList(root *BinaryTreeNode[int]) []*Node[*BinaryTreeNode[int]] {
 	lists := make([]*Node[*BinaryTreeNode[int]], 0)
 	depthList(root, &lists, 0)
