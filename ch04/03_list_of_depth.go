@@ -35,3 +35,42 @@ func depthList(root *BinaryTreeNode[int], lists *[]*Node[*BinaryTreeNode[int]], 
 	depthList(root.Left, lists, depth+1)
 	depthList(root.Right, lists, depth+1)
 }
+
+// DepthListBFS builds level lists using a queue (BFS) and per-level tail pointers.
+// Time complexity: O(n) — each node processed once.
+// Space complexity: O(n) — returned slice and lists store every node.
+// Auxiliary space: O(w) — queue holds up to the maximum width w of the tree.
+func DepthListBFS(root *BinaryTreeNode[int]) []*Node[*BinaryTreeNode[int]] {
+	if root == nil {
+		return nil
+	}
+
+	type treeNodeQueue struct {
+		node  *BinaryTreeNode[int]
+		depth int
+	}
+
+	queue := []treeNodeQueue{{node: root, depth: 0}}
+	lists := make([]*Node[*BinaryTreeNode[int]], 0)
+
+	for len(queue) > 0 {
+		item := queue[0]
+		queue = queue[1:]
+
+		if item.depth == len(lists) {
+			head := &Node[*BinaryTreeNode[int]]{data: item.node}
+			lists = append(lists, head)
+		} else {
+			lists[item.depth].Append(item.node)
+		}
+
+		if item.node.Left != nil {
+			queue = append(queue, treeNodeQueue{node: item.node.Left, depth: item.depth + 1})
+		}
+		if item.node.Right != nil {
+			queue = append(queue, treeNodeQueue{node: item.node.Right, depth: item.depth + 1})
+		}
+	}
+
+	return lists
+}
